@@ -31,7 +31,13 @@ all rebuilt from scratch in Python, all re-executed, all measured.**
 <p align="center">
   <a href="docs/assets/demo.mp4">▶ Watch the demo video (MP4)</a> ·
   <a href="https://github.com/M0-AR/von-neumann-from-scratch">⭐ Star this repo</a> ·
-  <a href="preview.html">🌐 Open the interactive web preview</a>
+  <a href="https://m0-ar.github.io/von-neumann-from-scratch/">🌐 Open the interactive web preview</a>
+</p>
+
+<p align="center">
+  <a href="https://m0-ar.github.io/von-neumann-from-scratch/">Home <code>/</code></a> ·
+  <a href="https://m0-ar.github.io/von-neumann-from-scratch/preview.html">Quiz page <code>/preview.html</code></a> ·
+  <a href="https://m0-ar.github.io/von-neumann-from-scratch/docs/preview.html">Mirror <code>/docs/preview.html</code></a>
 </p>
 
 > Read [🌱 Beginner guide](#-beginner-guide--read-this-and-you-are-a-professional) first.
@@ -62,16 +68,24 @@ all rebuilt from scratch in Python, all re-executed, all measured.**
 
 ## 🌐 Live web version (GitHub Pages)
 
-The folder `docs/` is a complete website (the same content as `preview.html` plus the
-interactive quiz). To publish it:
+Interactive site with the 8-question quiz (same content in three URLs so it works
+under either Pages setting):
 
-1. Push this repo to GitHub.
-2. Go to **Settings → Pages → Build and deployment → Deploy from a branch**,
-   select branch `main` and folder `/docs`, then **Save**.
-3. Open `https://M0-AR.github.io/von-neumann-from-scratch/`.
+| URL | When it renders |
+|---|---|
+| `https://m0-ar.github.io/von-neumann-from-scratch/` | entry page under **both** settings (docs `index.html`, or root redirect) |
+| `https://m0-ar.github.io/von-neumann-from-scratch/preview.html` | full quiz page (docs copy with source `/docs`, root mirror with source `/`) |
+| `https://m0-ar.github.io/von-neumann-from-scratch/docs/preview.html` | mirror that only renders when source is `/` (root) |
 
-Local preview (same page, no server needed): open `preview.html` in any browser,
-or run `python3 -m http.server -d docs 8000` and visit `http://localhost:8000`.
+Recommended setting (works with everything above): **Settings → Pages → Build and
+deployment → Deploy from a branch**, branch `main`, folder `/docs`, then **Save**.
+Wait 1–2 min for the "pages build and deployment" Action, then open `/` above.
+A root `index.html` redirect plus a root `preview.html` mirror are committed, so
+leaving source at `/` (root) also renders instead of 404ing.
+
+Local preview (same pages, no server needed): open `preview.html` or
+`docs/preview.html` in any browser, or run
+`python3 -m http.server -d docs 8000` and visit `http://localhost:8000`.
 
 ## 🎥 Demo video
 
@@ -347,8 +361,10 @@ Answer in `paper/PAPER.md` App. A: `2^10 = 1024`.
 - `scripts/make_media.py` — figures + `demo.gif` (no recorder needed)
 - `tests/test_all.py` — 12 verification tests
 - `data/` — penalty summary + `mystery.txt` puzzle
-- `docs/` — GitHub Pages site + `assets/` (PNG/GIF/MP4)
-- `preview.html` — same interactive page at repo root
+- `docs/` — GitHub Pages site (`index.html` entry + `preview.html` canonical, `assets/` PNG/GIF/MP4, `.nojekyll`)
+- `preview.html` — root mirror of `docs/preview.html` (asset paths rewritten `assets/` → `docs/assets/`)
+- `index.html` — root redirect to `preview.html` + fallback links (so `/` renders under root source)
+- `.nojekyll` — root copy (plus `docs/.nojekyll`) so Pages serves everything static
 - `paper/PAPER.md` — methods appendix (seeds, stats, answer key)
 - `benchmarks/BENCHMARKS.md` — one-page numbers table
 
