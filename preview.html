@@ -41,10 +41,10 @@ survive broken parts, copy yourself</b> — rebuilt from scratch, re-executed, m
 <div class="card">
 <h2>🎥 Demo (60 seconds)</h2>
 <video controls muted loop playsinline width="960" poster="assets/fredkin_panels.png">
-<source src="docs/assets/demo.mp4" type="video/mp4">
-<a href="docs/assets/demo.gif">▶ Watch the demo (GIF fallback)</a>
+<source src="assets/demo.mp4" type="video/mp4">
+<a href="assets/demo.gif">▶ Watch the demo (GIF fallback)</a>
 </video>
-<p><img alt="Fredkin self-replication demo" src="docs/assets/demo.gif" width="420"></p>
+<p><img alt="Fredkin self-replication demo" src="assets/demo.gif" width="420"></p>
 <p style="color:var(--mut)">GIF plays in the README; MP4 with sound-free player plays here on GitHub Pages (correct MIME). Both regenerate via <code>scripts/make_media.py</code>.</p>
 </div>
 
@@ -67,12 +67,12 @@ survive broken parts, copy yourself</b> — rebuilt from scratch, re-executed, m
 <div class="card">
 <h2>📸 Measured evidence</h2>
 <div class="grid">
-<div><img src="docs/assets/sort_scaling.png" alt="sorting benchmark"><p>n log n vs n²</p></div>
-<div><img src="docs/assets/pi_convergence.png" alt="pi convergence"><p>Dice → π ≈ 3.148</p></div>
-<div><img src="docs/assets/neutron_curve.png" alt="shield curve"><p>Shield ≈ 0.5^thickness</p></div>
-<div><img src="docs/assets/reliability_cliff.png" alt="reliability cliff"><p>Cliff at 1/6</p></div>
+<div><img src="assets/sort_scaling.png" alt="sorting benchmark"><p>n log n vs n²</p></div>
+<div><img src="assets/pi_convergence.png" alt="pi convergence"><p>Dice → π ≈ 3.148</p></div>
+<div><img src="assets/neutron_curve.png" alt="shield curve"><p>Shield ≈ 0.5^thickness</p></div>
+<div><img src="assets/reliability_cliff.png" alt="reliability cliff"><p>Cliff at 1/6</p></div>
 </div>
-<img src="docs/assets/fredkin_panels.png" alt="replicator panels t=0,8,24,56">
+<img src="assets/fredkin_panels.png" alt="replicator panels t=0,8,24,56">
 </div>
 
 <div class="card" id="quiz">
@@ -85,8 +85,8 @@ survive broken parts, copy yourself</b> — rebuilt from scratch, re-executed, m
 
 <div class="card" id="run">
 <h2>🚀 Run it yourself</h2>
-<pre>git clone https://github.com/YOUR-USER/von-neumann-8-ideas-verify-phd-2026.git
-cd von-neumann-8-ideas-verify-phd-2026
+<pre>git clone https://github.com/M0-AR/von-neumann-from-scratch.git
+cd von-neumann-from-scratch
 pip install -r requirements.txt
 pytest -q
 python scripts/run_all.py   # → results/results.json
@@ -105,7 +105,7 @@ docker compose up --build</pre>
 </ul>
 </div>
 </main>
-<footer>MIT · Reproduce freely, cite this repo · Replace YOUR-USER with your GitHub name</footer>
+<footer>MIT · Reproduce freely, cite this repo · github.com/M0-AR/von-neumann-from-scratch</footer>
 <script>
 const Q=[
 {q:"Tic-tac-toe with perfect play is…",o:["X always wins","A draw (0)","O always wins","Undecided"],a:1,e:"Step by step: minimax values the empty board at 0 over 549,946 positions. Corner opening → only center (0) survives; other 7 replies are +1 for X."},

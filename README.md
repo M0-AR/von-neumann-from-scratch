@@ -30,7 +30,7 @@ all rebuilt from scratch in Python, all re-executed, all measured.**
 
 <p align="center">
   <a href="docs/assets/demo.mp4">▶ Watch the demo video (MP4)</a> ·
-  <a href="https://github.com/YOUR-USER/von-neumann-8-ideas-verify-phd-2026">⭐ Star this repo</a> ·
+  <a href="https://github.com/M0-AR/von-neumann-from-scratch">⭐ Star this repo</a> ·
   <a href="preview.html">🌐 Open the interactive web preview</a>
 </p>
 
@@ -68,7 +68,7 @@ interactive quiz). To publish it:
 1. Push this repo to GitHub.
 2. Go to **Settings → Pages → Build and deployment → Deploy from a branch**,
    select branch `main` and folder `/docs`, then **Save**.
-3. Open `https://YOUR-USER.github.io/von-neumann-8-ideas-verify-phd-2026/`.
+3. Open `https://M0-AR.github.io/von-neumann-from-scratch/`.
 
 Local preview (same page, no server needed): open `preview.html` in any browser,
 or run `python3 -m http.server -d docs 8000` and visit `http://localhost:8000`.
@@ -180,15 +180,15 @@ You will know more than most interview candidates.
 ## 🚀 Quick start (60 seconds)
 
 ```bash
-git clone https://github.com/YOUR-USER/von-neumann-8-ideas-verify-phd-2026.git
-cd von-neumann-8-ideas-verify-phd-2026
+git clone https://github.com/M0-AR/von-neumann-from-scratch.git
+cd von-neumann-from-scratch
 pip install -r requirements.txt
 pytest -q            # 12 tests, ~60 s
 python scripts/run_all.py   # full benchmarks -> results/results.json
 docker compose up --build   # identical result in container
 ```
 
-Replace `YOUR-USER` with your GitHub name after pushing.
+Replace `M0-AR` with your GitHub name after pushing.
 
 ## 📸 Results at a glance
 
