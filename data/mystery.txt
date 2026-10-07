@@ -1,0 +1,14 @@
+# Mystery program for the little stored-program computer (Sec. 03).
+# Load it with Machine().load() and run. What does mem[30] contain, and what
+# mathematical function does this compute? (Answer: see paper Sec. 3 / README.)
+# Format: ADDR: INSTRUCTION  (instruction = op*100 + addr)
+0: 130
+1: 230
+2: 430
+3: 133
+4: 332
+5: 433
+6: 608
+7: 500
+8: 700
+DATA 30=1 32=1 33=10

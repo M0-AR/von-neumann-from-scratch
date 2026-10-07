@@ -1,0 +1,11 @@
+services:
+  lab:
+    build: .
+    volumes:
+      - ./results:/lab/results
+    command: pytest -q
+  reproduce:
+    build: .
+    volumes:
+      - ./results:/lab/results
+    command: python scripts/run_all.py

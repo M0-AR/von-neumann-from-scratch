@@ -1,0 +1,10 @@
+[project]
+name = "von-neumann-8-ideas-verify-phd-2026"
+version = "1.0.0"
+description = "Reproduce, benchmark and live-verify all 8 von Neumann ideas from scratch"
+requires-python = ">=3.10"
+dependencies = ["numpy>=1.26", "pandas>=2.0", "matplotlib>=3.8", "requests>=2.31", "scipy>=1.11", "yfinance>=0.2.40"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

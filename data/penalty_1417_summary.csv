@@ -1,0 +1,7 @@
+kicker,keeper,scored
+L,L,58
+L,R,95
+R,L,93
+R,R,70
+# Empirical scoring % from 1417 pro penalties (video claim; cf. Palacios-Huerta 2003).
+# Rows: kicker side; Cols: keeper dive. Guess-right: 58 L / 70 R; guess-wrong: ~93-95.

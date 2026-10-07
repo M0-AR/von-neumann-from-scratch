@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Eight Ideas of von Neumann — Interactive Lab</title>
+<style>
+:root{--bg:#0b1020;--card:#141b33;--ink:#eef2ff;--mut:#9aa6c7;--acc:#7dd3fc;--ok:#4ade80;--bad:#f87171}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
+header{padding:56px 20px;text-align:center;background:radial-gradient(800px 300px at 50% 0%,#1e2a55,transparent)}
+h1{font-size:2rem;margin:0 0 8px}.sub{color:var(--mut);max-width:760px;margin:0 auto}
+.badges{margin:14px 0}.badges span{display:inline-block;background:#1c2547;border:1px solid #2b3a6b;border-radius:999px;padding:3px 12px;margin:3px;font-size:.8rem}
+main{max-width:960px;margin:0 auto;padding:20px}
+.card{background:var(--card);border:1px solid #26315c;border-radius:14px;padding:20px;margin:18px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+table{width:100%;border-collapse:collapse;font-size:.92rem}th,td{border-bottom:1px solid #2a3766;padding:8px;text-align:left}
+img{max-width:100%;border-radius:10px}video{width:100%;border-radius:10px;background:#000}
+.btn{background:var(--acc);color:#06283a;border:0;border-radius:10px;padding:10px 18px;font-weight:700;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--acc);border:1px solid var(--acc)}
+.q{border:1px solid #2b3a6b;border-radius:12px;padding:14px;margin:12px 0}
+.q h4{margin:0 0 8px}.opt{display:block;width:100%;text-align:left;margin:6px 0;padding:9px 12px;border-radius:9px;border:1px solid #33407a;background:#0f1530;color:var(--ink);cursor:pointer}
+.opt:hover{border-color:var(--acc)}.opt.correct{border-color:var(--ok);background:#0e2a1c}.opt.wrong{border-color:var(--bad);background:#2c1215}
+.explain{display:none;color:var(--mut);font-size:.9rem;margin-top:8px}.explain.show{display:block}
+#score{font-size:1.2rem;font-weight:800}
+footer{color:var(--mut);text-align:center;padding:30px;font-size:.85rem}
+code{background:#0a0f24;padding:2px 6px;border-radius:6px}
+pre{background:#0a0f24;padding:12px;border-radius:10px;overflow:auto}
+a{color:var(--acc)}
+</style>
+</head>
+<body>
+<header>
+<h1>Eight Ideas of John von Neumann</h1>
+<p class="sub"><b>Play perfectly, bluff optimally, store programs, sort, gamble with dice, fake randomness,
+survive broken parts, copy yourself</b> — rebuilt from scratch, re-executed, measured, and priced on live 2026 markets.</p>
+<div class="badges"><span>12 tests passing</span><span>549,946 minimax nodes</span><span>29× sort speedup</span><span>4→16→64 copies</span><span>live AAPL/BTC</span></div>
+<p><a class="btn" href="#quiz" style="text-decoration:none">🎯 Take the 8-question quiz</a>
+<a class="btn ghost" href="#run" style="text-decoration:none">🚀 Run it in 60s</a></p>
+</header>
+<main>
+<div class="card">
+<h2>🎥 Demo (60 seconds)</h2>
+<video controls muted loop playsinline width="960" poster="assets/fredkin_panels.png">
+<source src="assets/demo.mp4" type="video/mp4">
+<a href="assets/demo.gif">▶ Watch the demo (GIF fallback)</a>
+</video>
+<p><img alt="Fredkin self-replication demo" src="assets/demo.gif" width="420"></p>
+<p style="color:var(--mut)">GIF plays in the README; MP4 with sound-free player plays here on GitHub Pages (correct MIME). Both regenerate via <code>scripts/make_media.py</code>.</p>
+</div>
+
+<div class="card" id="beginner">
+<h2>🌱 Beginner guide — zero to professional</h2>
+<p>Let's work this out in a step-by-step way to be sure we have the right answer. Each row is one idea, one picture, one file:</p>
+<table>
+<tr><th>#</th><th>Idea in one line</th><th>File → try it</th></tr>
+<tr><td>1</td><td>Tic-tac-toe: assume the opponent hurts you most, pick the best of that.</td><td><code>minimax.py</code> → empty board = draw</td></tr>
+<tr><td>2</td><td>Penalty: fixed habits lose; roll dice with exact odds (38/42 %).</td><td><code>mixed.py</code> → value 79.6</td></tr>
+<tr><td>3</td><td>Computer: instructions are numbers; the program rewrites itself.</td><td><code>machine.py</code> → 63 in 55 steps</td></tr>
+<tr><td>4</td><td>Sort: merge small sorted piles upward; 29× faster.</td><td><code>sorting.py</code></td></tr>
+<tr><td>5</td><td>Dice: darts → π; neutrons → shields; money → prices.</td><td><code>montecarlo.py</code></td></tr>
+<tr><td>6</td><td>Random-ish: recipes collapse; biased coins can be debiased.</td><td><code>randomness.py</code></td></tr>
+<tr><td>7</td><td>Redundancy: vote in threes; cliff at 1 failure in 6.</td><td><code>reliable.py</code></td></tr>
+<tr><td>8</td><td>Copy: use the description twice; V → 4 → 16 → 64.</td><td><code>selfrep.py</code></td></tr>
+</table>
+</div>
+
+<div class="card">
+<h2>📸 Measured evidence</h2>
+<div class="grid">
+<div><img src="assets/sort_scaling.png" alt="sorting benchmark"><p>n log n vs n²</p></div>
+<div><img src="assets/pi_convergence.png" alt="pi convergence"><p>Dice → π ≈ 3.148</p></div>
+<div><img src="assets/neutron_curve.png" alt="shield curve"><p>Shield ≈ 0.5^thickness</p></div>
+<div><img src="assets/reliability_cliff.png" alt="reliability cliff"><p>Cliff at 1/6</p></div>
+</div>
+<img src="assets/fredkin_panels.png" alt="replicator panels t=0,8,24,56">
+</div>
+
+<div class="card" id="quiz">
+<h2>🎯 Interactive quiz — from scratch to pro (8 questions)</h2>
+<p>Answer all eight. Explanations appear step by step; score ≥ 7 = <b>Professional</b>.</p>
+<div id="qs"></div>
+<p id="score"></p>
+<p><button class="btn ghost" id="retry">↻ Retry quiz</button></p>
+</div>
+
+<div class="card" id="run">
+<h2>🚀 Run it yourself</h2>
+<pre>git clone https://github.com/YOUR-USER/von-neumann-8-ideas-verify-phd-2026.git
+cd von-neumann-8-ideas-verify-phd-2026
+pip install -r requirements.txt
+pytest -q
+python scripts/run_all.py   # → results/results.json
+docker compose up --build</pre>
+<p>Publish this page: <b>Settings → Pages → Deploy from a branch → main + /docs → Save</b>.</p>
+</div>
+
+<div class="card">
+<h2>🧑‍💻 What you can use this for</h2>
+<ul>
+<li><b>Learn:</b> one file per idea, 12 tests define "correct".</li>
+<li><b>Teach:</b> 1 idea/week + quiz for grading.</li>
+<li><b>Interview prep:</b> minimax, n log n, 1/√N, PRNG, thresholds — with runnable answers.</li>
+<li><b>Build:</b> VM harness, counted sorts, GBM Monte Carlo, debiasing as templates.</li>
+<li><b>Puzzle:</b> <code>data/mystery.txt</code> computes…? (answer: 2¹⁰ = 1024).</li>
+</ul>
+</div>
+</main>
+<footer>MIT · Reproduce freely, cite this repo · Replace YOUR-USER with your GitHub name</footer>
+<script>
+const Q=[
+{q:"Tic-tac-toe with perfect play is…",o:["X always wins","A draw (0)","O always wins","Undecided"],a:1,e:"Step by step: minimax values the empty board at 0 over 549,946 positions. Corner opening → only center (0) survives; other 7 replies are +1 for X."},
+{q:"Kicker should shoot left with probability…",o:["0% (always right)","50%","38.3%","100% (always left)"],a:2,e:"Lines cross: 93−35p = 70+25p → p=23/60=38.3%. Value 79.6 beats either pure choice (58/70). Keeper dives left 41.7%."},
+{q:"Stored-program key idea?",o:["Move cables per problem","Instructions are numbers in the same memory","Bigger tubes","No memory"],a:1,e:"EDVAC 1945: program = numbers. Our VM rewrites ADD 20→21 while summing to 63 in 55 steps; same loop runs your phone."},
+{q:"Merge sort at n=1000 is faster by…",o:["~2×","~29×","~1000×","Slower"],a:1,e:"Measured 8,726 vs 252,826 comparisons = 28.97×. Gap grows: 10× data → 100× vs 14× work."},
+{q:"Monte Carlo error shrinks like…",o:["1/N","1/√N (100× per digit)","Exponentially","Never"],a:1,e:"Darts: 100→3.04, 10k→3.135, 100k→3.148. Slow but universal: shields, finance, film, AlphaGo."},
+{q:"Middle-square 1234…",o:["Never repeats","Hits 0 (best seed lasts 111)","Cryptographic","True random"],a:1,e:"5227 first; 0 after 56 outputs (57th incl. seed). Census 0–9999: mean 43.7, max 111 at seed 6239."},
+{q:"Von Neumann debiasing HT/TH gives…",o:["Always 1","Fair bit for any bias","Amplifies bias","Nothing"],a:1,e:"P(HT)=P(TH) for any bias. 70/30 coin → 50/50 at rate 2p(1−p)=0.42 per pair."},
+{q:"Redundancy cliff is at…",o:["50%","1/6 ≈ 16.7%","0%","100%"],a:1,e:"N=99: 5%→0, 10%→0.3%, 14%→35%, 16%→coin flip. Below 1/6 add wires and win; above, nothing helps. Fredkin bonus: V→4@8→16@24→64@56."}];
+let ans=[];
+function render(){const w=document.getElementById('qs');w.innerHTML='';ans=Array(Q.length).fill(-1);
+Q.forEach((qq,i)=>{const d=document.createElement('div');d.className='q';
+d.innerHTML='<h4>'+(i+1)+'. '+qq.q+'</h4>';
+qq.o.forEach((op,j)=>{const b=document.createElement('button');b.className='opt';b.textContent=op;
+b.onclick=()=>answer(i,j,d);d.appendChild(b);});
+const e=document.createElement('div');e.className='explain';e.textContent=qq.e;d.appendChild(e);w.appendChild(d);});
+document.getElementById('score').textContent='';}
+function answer(i,j,div){if(ans[i]!==-1)return;ans[i]=j;
+const btns=div.querySelectorAll('.opt');btns.forEach((b,k)=>{if(k===Q[i].a)b.classList.add('correct');else if(k===j)b.classList.add('wrong');b.disabled=true;});
+div.querySelector('.explain').classList.add('show');grade();}
+function grade(){if(ans.includes(-1))return;let s=0;ans.forEach((v,i)=>{if(v===Q[i].a)s++;});
+const lvl=s===8?'🏆 Professional':s>=6?'🥈 Advanced':s>=4?'🥉 Learner':'🌱 Beginner — reread the guide and retry';
+document.getElementById('score').textContent='Score '+s+'/8 — '+lvl;}
+document.getElementById('retry').onclick=render;render();
+</script>
+</body>
+</html>
